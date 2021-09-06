@@ -27,8 +27,7 @@ def main():
         else:
             problem, result = submission
 
-            if problem not in submissions:
-                submissions[problem] = {WRONG: 0, RIGHT: 0}
+            submissions.setdefault(problem, {WRONG: 0, RIGHT: 0})
 
             submissions[problem][result] += (
                 1 if result == WRONG else int(minutes)

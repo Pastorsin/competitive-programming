@@ -45,17 +45,19 @@ def guess_structure(actions):
             queue.append(number)
             stack.append(number)
             heapq.heappush(max_heap, number * -1)
-        elif len(queue) == 0:
-            is_queue = is_stack = is_max_heap = False
         else:
-            if number != queue.pop(0):
-                is_queue = False
+            try:
+                if number != queue.pop(0):
+                    is_queue = False
 
-            if number != stack.pop():
-                is_stack = False
+                if number != stack.pop():
+                    is_stack = False
 
-            if number != heapq.heappop(max_heap) * -1:
-                is_max_heap = False
+                if number != heapq.heappop(max_heap) * -1:
+                    is_max_heap = False
+            except IndexError:
+                is_queue = is_stack = is_max_heap = False
+                break
 
     return is_queue, is_stack, is_max_heap
 

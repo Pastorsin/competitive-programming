@@ -27,7 +27,7 @@ def main():
 
 
 def read_cds(total):
-    return {int(stdin.readline()) for _ in range(total)}
+    return {stdin.readline() for _ in range(total)}
 
 
 if __name__ == "__main__":

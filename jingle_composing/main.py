@@ -32,7 +32,7 @@ def calculate_duration(measures):
     total = 0
 
     for measure in measures:
-        measures_duration = sum([DURATIONS[duration] for duration in measure])
+        measures_duration = sum([DURATIONS[note] for note in measure])
 
         if measures_duration == 1:
             total += measures_duration

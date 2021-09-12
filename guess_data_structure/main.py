@@ -9,7 +9,6 @@ from sys import stdin, stdout
 import heapq
 
 PUSH = 1
-POP = 2
 
 
 def main():
@@ -21,9 +20,7 @@ def main():
 
         result = guess_structure(actions)
 
-        if not any(result):
-            stdout.write("impossible\n")
-        elif sum(result) > 1:
+        if sum(result) > 1:
             stdout.write("not sure\n")
         elif result[0]:
             stdout.write("queue\n")
@@ -31,6 +28,8 @@ def main():
             stdout.write("stack\n")
         elif result[2]:
             stdout.write("priority queue\n")
+        else:
+            stdout.write("impossible\n")
 
 
 def guess_structure(actions):

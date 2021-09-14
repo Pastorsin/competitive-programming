@@ -15,24 +15,23 @@ def main():
     sequence = tuple(map(int, stdin.readline().split()))
 
     lis(sequence, index=N - 1)
-
     stdout.write(f"{max(LIS_SIZES)}\n")
 
 
 @lru_cache()
 def lis(sequence, index):
-    sequence_size = 1
-    target = sequence[index]
+    sequence_lis = 1
+    sequence_target = sequence[index]
 
     for i in range(index):
-        subsequence_size = lis(sequence, i) + 1
+        subsequence_lis = lis(sequence, index=i) + 1
 
-        if sequence[i] < target and sequence_size < subsequence_size:
-            sequence_size = subsequence_size
+        if sequence[i] < sequence_target and sequence_lis < subsequence_lis:
+            sequence_lis = subsequence_lis
 
-    LIS_SIZES.append(sequence_size)
+    LIS_SIZES.append(sequence_lis)
 
-    return sequence_size
+    return sequence_lis
 
 
 if __name__ == "__main__":

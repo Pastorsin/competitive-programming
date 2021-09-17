@@ -1,7 +1,7 @@
 """
 Python version: 3.5.1
 
-https://onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=438
+https://vjudge.net/problem/UVA-497
 """
 
 from sys import stdin, stdout

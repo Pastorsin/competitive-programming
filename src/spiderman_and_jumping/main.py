@@ -5,37 +5,42 @@ https://www.codechef.com/problems/SPIDY2
 """
 
 from math import log2
-from functools import lru_cache
-from sys import stdin, stdout
+from sys import stdin, stdout, setrecursionlimit
 
-MAX_HEIGHT = 10 ** 9
+setrecursionlimit(200_000)
 
 
 def main():
     stdin.readline()
     heights = tuple(map(int, stdin.readline().split()))
 
-    last = len(heights) - 1
-    stdout.write(f"{minimal_energy(heights, index=last)}\n")
+    stdout.write(f"{minimal_energy(heights)}\n")
 
 
-@lru_cache()
-def minimal_energy(heights, index):
-    """
-    f(x) =  0                           if x = 0
-            f(x - 1) + (h[i] - h[x])    if x > 0
-    """
-    energy = 0 if index == 0 else MAX_HEIGHT
+def minimal_energy(heights):
+    MAX_HEIGHT = 10 ** 9
+    MEMO = [-1] * len(heights)
 
-    for i in range(index):
-        is_power_of_2 = log2(index - i).is_integer()
+    def lis(index):
+        if index == 0:
+            min_cost = 0
+        else:
+            min_cost = MAX_HEIGHT
+            iterations = int(log2(index) + 1)
 
-        if is_power_of_2:
-            cost = minimal_energy(heights, i) + abs(heights[i] - heights[index])
-            if cost < energy:
-                energy = cost
+            for k in range(iterations):
+                i = index - 2 ** k
 
-    return energy
+                previous_cost = lis(i) if MEMO[i] == -1 else MEMO[i]
+                new_cost = previous_cost + abs(heights[i] - heights[index])
+
+                if new_cost < min_cost:
+                    min_cost = new_cost
+
+        MEMO[index] = min_cost
+        return min_cost
+
+    return lis(index=len(heights) - 1)
 
 
 if __name__ == "__main__":

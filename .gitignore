@@ -1,5 +1,6 @@
 # Compresed files
 *.zip
+.activities
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

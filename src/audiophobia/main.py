@@ -75,9 +75,6 @@ class UFDS:
 
         return self.parents[x]
 
-    def equals(self, x, y):
-        return self.find(x) == self.find(y)
-
 
 def write_queries_response(case, queries, mst):
     if case != 1:

@@ -6,6 +6,9 @@ https://vjudge.net/problem/UVA-558
 
 from sys import stdin, stdout
 
+START_VERTEX = 0
+MAX_DISTANCE = 1000
+
 
 def main():
     total_cases = int(stdin.readline())
@@ -45,7 +48,10 @@ def has_negative_cycle(graph):
 
 
 def relax(graph):
-    distances = {vertex: 0 if vertex == 0 else 10000 for vertex in graph}
+    distances = {
+        vertex: 0 if vertex == START_VERTEX else MAX_DISTANCE
+        for vertex in graph
+    }
 
     for _ in range(len(graph) - 1):
         for vertex, edges in graph.items():
